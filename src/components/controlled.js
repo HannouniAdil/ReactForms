@@ -18,6 +18,10 @@ class Controlled extends Component {
             lastName:event.target.value
         })
     }
+    handleSubmit = (event) =>{
+        event.preventDefault();
+        console.log(this.state)
+    }
 
     render(){
         return(
@@ -39,6 +43,9 @@ class Controlled extends Component {
                         value={this.state.lastName}
                         />
                     </div>
+                    <button onClick={this.handleSubmit}>
+                        Submit
+                    </button>
             </form>
         </div>
         )
