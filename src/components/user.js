@@ -49,7 +49,11 @@ class User extends Component {
                     name: 'message_input',
                     rows:4,
                     cols:36
-                }
+                },
+                validation:{
+                    required:false
+                },
+                valid:true
             },
             age: {
                 element: 'select',
@@ -63,7 +67,11 @@ class User extends Component {
                         {val:'2', text:'20-30'},
                         {val:'3', text:'+30'}
                     ]
-                }
+                },
+                validation:{
+                    required:false
+                },
+                valid:true
             }
         }
     }
@@ -77,11 +85,20 @@ class User extends Component {
     submitForm = (event) =>{
         event.preventDefault();
         let dataToSubmit = {};
+        let formIsValid = true;
 
         for(let key in this.state.formData){
             dataToSubmit[key] = this.state.formData[key].value
         } 
-        console.log(dataToSubmit)
+        for(let key in this.state.formData){
+            formIsValid = this.state.formData[key].valid && formIsValid;
+        }
+
+        if(formIsValid)
+            console.log(dataToSubmit);
+        else    
+            console.log('Something is missing');
+        
     }
 
     render(){
@@ -90,6 +107,7 @@ class User extends Component {
                 <form onSubmit={this.submitForm} >
                     <FormFields 
                     formData={this.state.formData}
+                    onBlur={(newState)=>this.updateForm(newState)}
                     change={(newState)=>this.updateForm(newState)}
                     />
 
