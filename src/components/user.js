@@ -14,7 +14,14 @@ class User extends Component {
                     name: 'name_input',
                     type: 'text',
                     placeholder: 'Enter your Name'
-                }
+                },
+                validation:{
+                    required:true,
+                    minLen:5
+                },
+                valid:false,
+                touched:false,
+                validationMessage:''
             },
             lastName: {
                 element: 'input',
@@ -25,7 +32,13 @@ class User extends Component {
                     name: 'lastname_input',
                     type: 'text',
                     placeholder: 'Enter your Lastname'
-                }
+                },
+                validation:{
+                    required:false
+                },
+                valid:true,
+                touched:false,
+                validationMessage:''
             },
             message: {
                 element: 'textarea',
